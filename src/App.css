@@ -1,42 +1,168 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #212529;
+  text-align: left;
+  background: #87b5b5;
+}
+
+header {
+  background-color: #4aa3a3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  color: #000;
+  font-family: Russo One;
+  border: 1px solid #1d2f2f;
+  box-shadow: 1px 1px 10px 2px #3a5f5f;
+}
+
+h1 {
   text-align: center;
+  color: #333;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+#editor {
+  padding: 0 1rem;
+  background-color: #c0d8d8;
+  box-sizing: border-box; /* Ensures padding is included in width */
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+#editor,
+#preview,
+textarea {
+  background-color: #c0d8d8;
+  border: 1px solid #1d2f2f;
+  box-shadow: 1px 1px 10px 2px #3a5f5f;
+  border-top: none;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#preview {
+  background-color: #fff;
+}
+#preview table {
+  border-collapse: collapse;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+#preview th,
+#preview td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#preview th {
+  background-color: #f4f4f9;
+  font-weight: bold;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.editor,
+.preview {
+  width: 90%; /* Default width */
+  max-width: 600px; /* Limit maximum width */
+  margin: 0 auto; /* Center the editor */
+  padding: 1rem;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.fa-compress,
+.fa-arrows-alt:hover {
+  color: rgb(68, 255, 108);
+}
+
+pre {
+  background-color: #fff;
+  color: #000;
+}
+/* Responsive Design */
+
+/* Larger screens: Side-by-side layout */
+@media (min-width: 768px) {
+  .App {
+    flex-direction: column; /* Side-by-side layout for larger screens */
+    justify-content: center;
+    gap: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .editor,
+  .preview {
+    width: 45%; /* Adjusted width for side-by-side view */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Extra large screens */
+@media (min-width: 1200px) {
+  .editor,
+  .preview {
+    width: 40%; /* Adjust width for very large screens */
   }
 }
 
-.card {
-  padding: 2em;
+/* Expanded Editor */
+.editor.full-screen {
+  width: 100%;
+  height: 100vh;
+  max-width: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
 
-.read-the-docs {
-  color: #888;
+.App.editor-expanded .preview {
+  display: none; /* Hide preview when editor is expanded */
+}
+
+/* Expanded Preview */
+.preview.full-screen {
+  width: 100%;
+  height: 100vh;
+  max-width: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.App.preview-expanded .editor {
+  display: none; /* Hide editor when preview is expanded */
+}
+
+/* Smaller screens: Stack layout */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column; /* Stack components vertically */
+  }
+
+  .editor,
+  .preview {
+    width: 90%; /* Full width for smaller screens */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  header {
+    flex-direction: column; /* Stack header elements for smaller screens */
+    text-align: justify;
+  }
+
+  textarea {
+    height: 200px; /* Smaller default height for textarea */
+  }
+
+  .editor,
+  .preview {
+    width: 100%; /* Full width for extra small screens */
+    padding: 0.5rem; /* Reduce padding */
+  }
 }
